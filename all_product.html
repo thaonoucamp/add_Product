@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <input type="text" placeholder="New Product" id = 'newProduct'> <button value="Add" onclick="addNewProduct()">ADD</button>
+    <h1>DANH SACH SAN PHAM</h1>
+<table style="border: 1px solid">
+    <thead>
+    <td>STT</td>
+    <td>name</td>
+    <td>edit</td>
+    <td>delete</td>
+    </thead>
+    <tbody id="list">
+     <tr>
+         <td>STT</td>
+         <td>ten spham</td>
+         <td><button button onclick="editProduct()">Edit</button></td>
+         <td><button button onclick="deleteProduct()">Delete</button></td>
+     </tr>
+    </tbody>
+
+</table>
+    <script>
+        let product = ["Iphone X","Samsung Galaxy","Sony"];
+        showAllProduct();
+        function showAllProduct() {
+            let content = "";
+            for (let i = 0; i < product.length; i++) {
+                content +=  '  <tr>\n' +
+                    '         <td>'+(i+1)+ ' </td>\n' +
+                    '         <td>'+ product[i]+'</td>\n' +
+                    '         <td><button button onclick="editProduct('+i+')">Edit</button></td>\n' +
+                    '         <td><button button onclick="deleteProduct('+i+')">Delete</button></td>\n' +
+                    '     </tr>'
+            }
+            document.getElementById("list").innerHTML = content;
+        }
+        function addNewProduct() {
+            // Buoc 1: lay ten sp tu input
+            let newP = document.getElementById("newProduct").value;
+            // Buoc 2: them sp moi vao mang
+            product.push(newP);
+            // Buoc 3: hien thi danh sach moi
+            showAllProduct();
+            // Buoc 4:
+            document.getElementById("newProduct").value = "";
+        }
+        function editProduct(index) {
+            // Buoc 1: dua ra o de nhap du lieu
+            let newName = prompt("Hay sua lai Product ", product[index]);
+            // Buoc 2: gan gia tri moi cho index
+            product[index] = newName;
+            // Buoc 3: hien thi lai mang
+            showAllProduct();
+        }
+        function deleteProduct(index) {
+            // Buoc 1: tim vi tri Product
+            product.splice(index,1);
+            showAllProduct();
+
+            // Buoc 2: xoa Product
+
+            // Buoc 3: hien thi lai mang
+        }
+
+    </script>
+</body>
+</html>
